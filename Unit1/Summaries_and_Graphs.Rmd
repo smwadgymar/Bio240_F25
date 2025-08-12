@@ -1,0 +1,140 @@
+---
+title: "Practice with summaries and graphs"
+author: "SMWadgymar"
+---
+
+In this exercise, we are going to practice summarizing, describing, and visualizing data of different kinds. The AVONET database contains comprehensive functional trait data for all birds, including six ecological variables, eleven continuous morphological traits, and information on range size and location. The data set includes information about 90,020 individuals from 11,009 bird species sampled from 181 countries. Let's use this dataset to practice R skills!
+
+
+1) Setting your working directory, please read carefully
+
+We are going to analyze the Bird.csv dataset in the Unit 1 folder on Jupyterhub. ANY TIME you are working in R, you MUST set your working directory to the folder where you will save your script. Your script WILL NOT RUN and you will be UNABLE TO MAKE a PDF to submit if your working directory is not set within the folder you script (and data, if applicable) are saved in.
+
+To set your working directory (which you should do EVERY TIME you work in R), go to the files tab of the lower right window. Navigate to the Unit1 folder. Once you are inside it, click on the 'More' drop down menu and select "Set As Working Directory".
+
+Note, if you decide to work in another folder, you have to reset your working directory to reflect where the script you are working on is saved.
+
+
+
+2) Importing data and checking variable types, please read carefully
+
+Import your dataset by using the code below. Here, we are importing Bird.csv from our working directory (which you set in part 1) and we are naming it "Bird".
+
+```{r}
+Bird<-read.csv("Bird.csv")
+```
+
+
+When you import a dataset, R will sometimes make assumptions about what type of variable each column represents that are incorrect. If a column contains all numbers, it will be designated as numeric (num) or integer (int). However, if a column contains text (which includes NA for when data is not available), it will be classified as a character variable instead of a factor variable, which will interfere with our ability to use that variable in graphs. 
+
+Every time you import a datafile, one of the first things you should do is check to see what variable types your columns have been assigned. Use the summary function to see whether any factors in the dataset have been classified as characters. 
+
+```{r}
+
+```
+
+
+If you see character variables that need to be reassigned as factors, you should use the code below to assign all characters in the entire dataset as factors. All you need to do is replace DF (which stands for DataFrame), with the name of the dataset you are importing (which you specified above). 
+
+```{r}
+DF[sapply(DF, is.character)]<-lapply(DF[sapply(DF, is.character)], as.factor)
+```
+
+
+
+3) Summarizing data
+
+Q3.1: What is the lowest and highest latitude value among all the birds included in this datset?
+
+```{r}
+
+```
+
+A: 
+
+
+Q3.2: What is the average range size of the birds in this dataset? These values are reported in units of km2. NOTE, because this dataset includes NAs in rows where data is not available, you need to tell R to exclude those NAs in its calculation by adding the argument "na.rm=T" within your function. Reminder: you have to separate the arguments in your code with a comma. 
+
+
+```{r}
+
+```
+
+
+Q3.3: How many birds live in each of the 12 kinds of habitats listed (which includes NA for unknown habitats)?
+
+```{r}
+
+```
+
+
+
+
+4) Graphs and tables
+
+Q4.1: Make a histogram of the tail lengths of birds (reported in units of mm). From now on, you need to add your own code chunk below each question. To do that, go to the "Code" dropdown menu at the top of your screen and select "Insert Chunk". How would you describe this distribution? Comment on the range, symmetry, and mode of the data.
+
+```{r}
+
+```
+
+A: 
+
+
+Q4.2: Make a table that depicts the proportion of birds in different trophic levels. Which trophic level is the most common?
+
+```{r}
+
+```
+
+A: 
+
+
+Q4.3: How would you adjust the table to look at what proportion of the Tyrannidae family are in different trophic levels?
+
+```{r}
+
+```
+
+
+
+Q4.4: Let's make a table that depicts the number of birds from each habitat and trophic level combination. To do that, use the table function and separate the two variables by a comma. Which trophic level and habitat combination are the most abundant in this datset?
+
+```{r}
+
+```
+
+A: 
+
+
+
+Q4.5: Use boxplots to show the distribution of wing lengths across trophic levels. Which trophic level has the largest wing lengths?
+
+```{r}
+
+```
+
+A: 
+
+
+Q4.5: Is there an association between beak width and beak depth? Make the appropriate graph to assess the relationship between these two variables. Describe the pattern you see.
+
+```{r}
+
+```
+
+A: 
+
+
+
+Q5: Knit your document into a PDF.
+
+Once you have a complete script, you can "Knit" it to a PDF to submit it. The following criteria MUST be met for your script to knit correctly:
+
+1) You have set your working directory to the folder where you script is saved (and where your dataset is found, if applicable).
+
+2) You can run your entire script without errors.
+
+To knit your script, click on the dropdown menu next to the "Knit" button, which has an icon of yarn and needles. Select "Knit to PDF".
+
+You will see the bottom left window flip to the "Terminal" tab as R knits your document. If the conditions above are met, there are two things that should happen: you will see a PDF appear in your working directory and you will see a window pop up that shows you what the PDF looks like. You will be submitting knitted files to me throughout the course, so make sure that you understand these steps.

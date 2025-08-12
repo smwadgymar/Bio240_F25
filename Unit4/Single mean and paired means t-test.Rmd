@@ -1,0 +1,115 @@
+---
+title: "Single mean and paired means t-testk"
+---
+
+A 2016 study from the CDC reported that more than a third of American adults are not getting enough sleep on a regular basis. The national sleep foundation recommends that adults need between 7 to 9 hours of sleep per night to function well. Consistent sleep deprivation is known to increase risk of health problems, negatively affect cognitive processes, and contribute to depressive symptoms. 
+
+The dataset nhanes.samp.adult contains sleep information for 135 participants ages 21 years of older. The variable SleepHrsNight contains the self-reported number of hours a participant usually gets at night on weekdays or workdays. Some information was taken twice, from 2009-2010 and then again from 2011-2012.
+
+
+Load the data
+```{r}
+library(oibiostat)
+data("nhanes.samp.adult")
+```
+
+
+Q1) Look at the data and identify the column that lists the duration of nightly sleep that the participants report. Using numerical and graphical summaries, describe the distribution of nightly sleep in the dataset.  
+
+```{r}
+
+```
+
+In addition, use a Shapiro test to formally test for normality. The argument needed here is the variable you are assessing. For this test, a significant result indicates significant skew.  
+
+```{r}
+shapiro.test(???)
+```
+
+Describe what you know about the distribution of data from the histogram and the shapiro test.
+
+A: 
+
+
+
+Q2) Conduct a hypothesis test to assess whether on average, American adults are getting enough sleep. Let mu be 8 hours.
+
+(a) Formulate null and alternative hypotheses using proper notation. 
+
+
+
+
+(b) Specify a significance level, alpha
+
+
+
+
+(c) Manually calculate the test statistic and name it teststat.
+
+```{r}
+
+
+
+```
+
+
+
+(d) Calculate the p-value in R. Although there is a large number of samples, use the t-distribution to calculate the the p-value to account for the fact that the population sd is unknown.
+
+```{r}
+
+```
+
+
+
+
+Q3) Instead of calculating the test statistic and p-value as you did above you can also use the function t.test() to conduct the test for you:
+
+(a) Complete the function below by inputting the data, mu, and what the alternative hypothesis is (you can enter here "two.sided", "less", or "greater"). Do the results below match that of what you found? If they don't, there is an error somewhere in your code or calculations.
+
+```{r}
+t.test(data=???, mu=???, alternative="???")
+```
+
+A: 
+
+
+
+(b): Interpret the p-value in the context of the decided alpha. You should do this using a complete sentence.
+
+A: 
+
+
+
+
+(c): Notice above what t.test returns. How can you use t.test to find the 95% confidence interval?
+
+A: 
+
+
+(d): What is the interpretation of your confidence interval?
+
+A: 
+
+
+
+
+
+Q4) We can use the same function to conduct a paired t-test.  Let's see how consistent the participants' systolic blood pressure is across consecutive readings (labeled as BPSys1 and BPSys2).
+
+In the code chunk below, modify the code to perform a test that compares our two variables of interest.  Your first two arguments will be those variables. For the alternative argument, enter in either "two.sided" or "one.sided" as appropriate.
+
+```{r}
+t.test(???, ???, paired=TRUE, alternative=???)
+```
+
+
+(a): Interpret the p-value in the context of the decided alpha.
+
+
+
+
+
+(b): What is the interpretation of the 95% confidence interval?
+
+

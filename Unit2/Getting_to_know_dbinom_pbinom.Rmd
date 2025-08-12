@@ -1,0 +1,88 @@
+---
+title: "Getting to know dbinom and pbinom"
+author: "SMWadgymar"
+---
+
+
+R has many built-in functions that allow us to draw samples from well-characterized distributions.  We’ll make use of three of those functions for the binomial distribution here: ‘rbinom’, ‘dbinom’, and ‘pbinom’. Importantly, we will make use of these functions to examine probabilities in two ways. First, we’ll run simulations, as we did before. Simulations are digital experiments. We use them to conduct large, replicated experiments that would not be possible in real life, and as in real life, we want our outcomes to be the product of random chance. The goal is to run enough simulations that the probabilities that we estimate are likely very close approximations of the true probabilities (which are often unknown). For our second approach, we will calculate exact probabilities. We can do this because we are drawing our samples from a well-characterized distribution where the exact probabilities are known.
+
+
+####Finding probabilities through simulation
+
+6) Simulate sampling 10 individuals with a 50% survival rate from each of 100,000 populations. Here, we are saving our simulation as a variable called flips.
+
+```{r}
+flips<-rbinom(???, ???, ???)
+```
+
+Q: How many values are stored in the variable called flips?  What is your interpretation of each value?
+
+A: 
+
+
+
+7) Let's find the fraction of populations where 5 individuals survived.
+
+```{r}
+mean(flips==5)
+```
+
+Q: Which do you expect will be lower: the probability that 3 out of 10 individuals survived or the probability that 5 out of 10 individuals survived?  Why?  
+
+A: 
+
+
+
+8) In what proportion of populations did 3 out of 10 individuals survive? This reflects the probability that this outcome will occur, and is called the density of this distribution at the point where x=3.
+
+```{r}
+???
+```
+
+Q: How does the probability that 3/10 individuals survive compare to the probability that 5/10 individuals survived?
+
+A: 
+
+
+9) Let's find the cumulative probability that 4 or fewer individuals will survive across populations.  This is referred to as the cumulative probability because it sums up the probability that the number of survivors is 0, 1, 2, 3, or 4 out of 10 individuals.
+
+```{r}
+???
+```
+
+Q: How would you adjust this line of code to estimate the cumulative probability that 6 or more individuals will survive?
+
+A:
+
+```{r}
+???
+```
+
+
+
+####Finding the exact probabilities
+
+10) The dbinom function estimates the exact probability density for a given outcome.  The arguments in the dbinom function are the density (outcome) being estimated, the number of observations, and the probability of sucess.  Note that the order and type of arguments used here do NOT match the order and type of arguments that you used for the 'rbinom' function.
+
+Here, we are calculating the exact probability that five individuals out of ten will survive when survival rates are 50%.
+
+```{r}
+dbinom(5, 10, 0.5)
+```
+
+Q: How does this command compare to the steps you took for question 6 and 7 above?  Are the estimates comparable?  Why or why not?
+
+A: 
+
+
+11) Now let's estimate the exact cumulative probability density for a given range.  The arguments in the pbinom function are the density (value) being estimated, the number of observations, and the probability of success.  Note that the order and type of arguments used here do not match the order and type of arguments that you used for the 'rbinom' function.
+
+Here, we are calculating the exact cumulative probability that four or less individuals out of ten survive when survival rates are 50%.
+
+```{r}
+pbinom(4, 10, 0.5)
+```
+
+Q: How does this command compare to the steps you took for question 9?  Are the estimates comparable?  Why or why not?
+
+A: 

@@ -1,0 +1,81 @@
+---
+title: "Getting to know rbinom"
+author: "SMWadgymar"
+---
+
+A probability distribution is a mathematical description of the possible outcomes of a random variable. There are many types of distributions that have been characterized mathematically and are useful to us when analyzing data. Any event that has a binary outcome (i.e., heads vs. tales, true vs false, survives vs. dies, etc.) follow a binomial distribution.  
+
+The binomial distribution is the distribution that describes the frequency of outcomes for each set of trials where there are exactly two possible outcomes for each trial.  The notation used to describe the binomial distribution, B(n,p), includes two parameters: n is the size (# trials) and p is the probability that each trial is a "success" (for now, 0.5 to make things even). "Success" here just means which outcome you want to focus on (i.e., you decide if achieving heads vs. tails is a success, or true versus false, etc.).
+
+A variable is binomially distributed if (1) the trials are independent, (2) the number of trials is fixed, (3) each trial outcome can be classified as success or failure, and (4) the probability of success is the same for each trial. This is one of many distributions and we will touch on a few distributions (not all by any means!) in class. 
+
+R has many built-in functions that allow us to draw samples from well-characterized distributions.  We'll make use of three of those functions for the binomial distribution here: ‘rbinom’, ‘dbinom’, and ‘pbinom’. Importantly, we will make use of these functions to examine probabilities in two ways. First, we will run simulations. Simulations are digital experiments. We use them to conduct large, replicated experiments that would not be possible in real life, and as in real life, we want our outcomes to be the product of random chance. The goal is to run enough simulations that the probabilities that we estimate are likely very close approximations of the true probabilities (which are often unknown, but we can conduct real-world experiments to see how they align with our simulations). For our second approach, we will calculate exact probabilities. We can do this because we are drawing our samples from a well-characterized distribution where the exact probabilities are known.
+
+
+
+####Getting to know the 'rbinom' function
+
+1) Let's simulate a random event from a binomial distribution.  The rbinom function has three arguments: 
+
+n, or the number of observations for each trial (ex. number of populations observed)
+
+
+size, or the number of trials (ex. number of individuals assessed for survival)
+
+
+prob, or the probability of success (p) in each trial (ex. probability of surviving)
+
+In the code below, replace 'n', 'size', and 'prob' arguments with values to simulate one individual being monitored in one population with a 50% probability of surviving.
+
+```{r}
+rbinom(n, size, prob)
+```
+
+Q: What does the output here mean?
+
+A: 
+
+
+2) How would you adjust the code above to simulate one individual being assessed for survival in each of ten populations?
+
+```{r}
+
+```
+
+Q: What does the output here mean?
+
+A: 
+
+
+3) How about ten individuals from one population?
+
+```{r}
+
+```
+
+Q: What does the output here mean?
+
+A: 
+
+
+4) How about ten populations with each having 10 individuals that you monitor?
+
+```{r}
+
+```
+
+Q: What does the output here mean?
+
+A: 
+
+
+5) Simulate the outcomes of observing 10 individuals from 10 populations that each have an 80% chance of surviving. 
+
+```{r}
+
+```
+
+Q: How does the output of this line of code differ from the output you saw in the previous example with a 50% survival rate?  Did you expect these differences?
+
+A: 
+

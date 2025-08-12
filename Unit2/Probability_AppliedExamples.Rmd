@@ -1,0 +1,121 @@
+---
+title: 'Probability: Applied examples'
+author: "SMWadgymar"
+---
+
+
+PRACTICE: rbinom, dbinom, pbinom
+
+Do not use ChatGPT to answer these questions - try them on your own based on the information above. For each of the following scenarios, identify which function (rbinom, dbinom, or pbinom) you should use and find the solution.
+
+Scenario 1: You are studying the effect of a toxin on a frog population. It is known that 40% of the frogs exposed to this toxin will die. You want to simulate how many frogs out of a sample of 100 survive after being exposed to the toxin.
+
+```{r}
+
+```
+
+
+Scenario 2: A predator has a 30% chance of catching its prey during a hunt. You want to find the cumulative probability that the predator will catch 3 or fewer prey in 10 hunts.
+
+```{r}
+
+```
+
+Scenario 3: In a population of 1000 birds, 5% are infected with a virus. You want to simulate the number of infected birds in a random sample of 100 birds.
+
+```{r}
+
+```
+
+
+Scenario 4: In a population of plants, there is a 10% chance that any given offspring will carry a certain genetic mutation. You have 50 offspring and want to calculate the probability of getting exactly 5 mutants in this population.
+
+```{r}
+
+```
+
+
+Scenario 5: There is a 20% chance of detecting an endangered species in a specific region during a survey. You want to find the probability that in 15 surveys, the species is detected at least once.
+
+```{r}
+
+```
+
+
+Scenario 6: You are testing whether light exposure affects the blooming of flowers. You know from previous studies that 70% of flowers bloom when exposed to sunlight. In an experiment with 20 flowers, you want to calculate the probability that 14 flowers will bloom.
+
+```{r}
+
+```
+
+
+Scenario 7: In a fish population, 15% are infected by a certain parasite. You want to calculate the probability of observing 8 or fewer infected fish in a sample of 50.
+
+```{r}
+
+```
+
+
+Scenario 8: A bird species has a 60% chance of successfully hatching eggs. You are interested in simulating how many out of 5 eggs in a nest will hatch in each of 20 nests.
+
+```{r}
+
+```
+
+
+Scenario 9: In a population of insects, 45% of offspring exhibit a specific trait. You want to simulate the number of offspring with this trait in 50 random insect births.
+
+```{r}
+
+```
+
+
+Scenario 10: You are studying the expression of a gene and know that each gene copy has a 25% chance of being expressed. In a group of 12 gene copies, you want to determine the probability that 3 of them will be expressed.
+
+```{r}
+
+```
+
+
+
+
+Simulation: Why does sample size matter?
+
+Dr. Chen is studying seed germination in wildflowers. She knows that for a particular species, 30% of seeds typically germinate under standard growing conditions.
+
+a) Use rbinom() to simulate 100 experiments, each testing 10 seeds. Save your results.
+
+```{r}
+
+```
+
+
+b) Create a table of reflecting the proportion of simulations that resulted in zero through ten seeds germinating by modifying the code below as appropriate. Save your results.
+
+```{r}
+small_table<-prop.table(table(factor(???, levels=0:10)))
+```
+
+
+c) Calculate theoretical probabilities of having zero through ten seeds germinate using dbinom() (the "true" probabilities, which reflect infinite sample sizes).
+
+```{r}
+
+```
+
+d) Compare your simulation and theoretical probabilities by modifying the code below as appropriate.
+
+```{r}
+barplot(rbind(???, ???), beside=T, legend=c("Simulation", "Theoretical"), xlab="Number of germinated seeds")
+```
+
+Description of comparison: 
+
+
+e) Repeat the steps above in a second study where 10 seeds are used in each of 10,000 experiments. How do simulated and theoretical results compare in this case?
+
+```{r}
+
+```
+
+Description of comparison: 

@@ -1,0 +1,77 @@
+---
+title: "ANOVA_age and marital status"
+author: "SMWadgymar"
+---
+
+
+We are going to analyze data on people who live in the UK. The dataset is called "smoking" because their smoking status is recorded, but we are going to explore other variables for now. You can assume the data in this datsest are independent.
+
+First, install the library we need to access the data.
+```{r}
+library("openintro")
+```
+
+Next, upload the data frame.
+```{r}
+data("smoking")
+```
+
+
+
+Q1) Let's explore whether age predicts marital status. What are the hypotheses for this test?
+
+A: 
+
+
+
+Q2) Make a boxplot of the age of participants across marital status.
+
+```{r}
+
+```
+
+Q3: Is the assumption of independence met?
+
+A: 
+
+
+Q4: Is the assumption of equal variances met? We used the var.test() function when we had only two groups to compare. Here, we have five groups so we are going to use the bartlett.test(y~x) function. A significant result indicates that the variances between at least two groups are significancly different from each other. Complete the code below and interpret the results.
+
+```{r}
+bartlett.test(????)
+```
+
+A: 
+
+
+Q5: Is the assumption of normality met? In reality, we would assess this assumption in a slightly different way. For now, you can do a shapiro test on the response variable, as we have done previously.
+
+```{r}
+
+```
+A: 
+
+
+
+Q6: Let's conduct the ANOVA. Here, we are using the aov(y~x) function. We are going to name and save our model so that we can use the summary() function to look at the results. 
+
+```{r}
+model1<-aov(???)
+summary(model1)
+```
+Interpret the results of this analysis in the context of the hypotheses.
+
+A: 
+
+
+
+Q7) How can we further explore where the significant differences lie among the averages of each marital status? We can do a post-hoc paire-wise test that automatically corrects our value of alpha to keep our type I error rate from increasing. Here, we are going to do a TukeyHSD() test, where the only argument you need is the name of the anova model that you ran.
+
+```{r}
+TukeyHSD(????)
+```
+
+Q: Interpret the results of this post-hoc test. Here, p adj refers to p-values that have been adjusted for multiple comparisons and you can interpret them with our typical level of alpha.
+
+A: 
+

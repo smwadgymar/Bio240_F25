@@ -1,0 +1,106 @@
+---
+title: "Diamonds"
+author: "SMWadgymar"
+---
+
+Let's explore whether 1.00 carat diamonds cost more than 0.99 carat diamonds.
+
+1) First, upload the data. Note that this data is housed in a different package than the one associated with our textbook.
+
+```{r}
+library(ggplot2)
+data("diamonds")
+```
+
+
+2) This data contains diamonds with wide variety of carats. To see that for yourself, graph the distribution of all of the diamonds.
+
+```{r}
+
+```
+
+We want to subset the diamonds dataframe to include only diamonds with 0.99 and 1.00 carats. We'll create two subsets to get us started.
+
+```{r}
+carat99<-subset(diamonds, carat==0.99)
+carat1<-subset(diamonds, carat==1.00)
+```
+
+Q: How many diamonds are in each subset?
+
+```{r}
+
+
+```
+
+A: 
+
+
+To make the sample sizes a bit more equal, let's randomly sample a subset of 1.00 carat diamonds to use in our analysis.
+
+```{r}
+carat1<-carat1[sample(nrow(carat1), 23, replace=FALSE),]
+```
+
+Q: What do the various elements of the code above do?
+
+A: 
+
+
+Now that we have two subsets of equal sample size, let's stack them together into one dataset that we can use in analyses.
+
+```{r}
+diamonds_sub<-rbind(carat99, carat1)
+```
+
+
+3) Make a boxplot showing the prices of 0.99 and 1.00 carat diamonds in our new dataset.
+
+```{r}
+
+```
+
+
+Q: Describe how the two distributions compare.
+
+A:  
+
+
+4) Let's analyze whether there is a statistical difference between the two types of diamonds.
+
+Q: First, use R to assess whether the assumptions for a two-mean t-test have been met. To see if variances between groups are approximately equal, you can use the var.test(y~x) function. In this case, a significant results indicates that the variances between the two groups are significantly different from each other. Go ahead and specify the appropriate variables in place of the question marks below.
+
+```{r}
+var.test(???, ???)
+```
+
+Q: Are variances approximately equal?
+
+A: 
+
+
+5) To conduct a t.test, we can use the same function t.test() as we did with a single-mean or paired t test. In this case, you want to specify your two variables of interest as y~x. You also want to specify whether this is a one-tailed or two-tailed test, as you have done previously.
+
+```{r}
+
+
+```
+
+Q: What is your test statistic?
+
+A: 
+
+Q: What is the conclusion of your hypothesis test?
+
+A: 
+
+
+Q: How (if at all) would this conclusion change your behavior if you went diamond shopping? 
+
+A:
+
+
+Q: Does it make a difference for the outcome of your test whether you specified it was a one-tailed or two-tailed test?
+
+A: 
+
