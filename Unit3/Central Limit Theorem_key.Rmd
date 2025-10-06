@@ -1,0 +1,187 @@
+---
+title: "Central Limit Theorem"
+author: "SMWadgymar"
+date: '2022-08-16'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+We are going to be looking at data from the Spanish Flu. The Spanish Flu overlapped with World War I but caused more than twice as many deaths as the war itself. Approximately one third of the world's population was infected by the virus which had a mortality rate of approximately 10%. Below, we'll examine age at death in 1918 in Switzerland during the Spanish Flu pandemic. 
+
+
+1) Read in the data
+```{r}
+flu <- read.csv(url("http://www.zoology.ubc.ca/~schluter/WhitlockSchluter/wp-content/data/chapter10/chap10e6AgesAtDeathSpanishFlu1918.csv"))
+```
+
+
+2) Explore the dataset using summary().
+```{r}
+summary(flu$age)
+```
+
+
+3) Make a histogram of age at death.
+```{r}
+hist(flu$age)
+```
+
+
+Q: How would you describe this distribution? Comment on modality, skew, and whether it appears normally distributed.
+
+A: The data are highly non-normal.  They appear almost tri-modal, with a large peak at very low ages and two smaller peaks at ~30 and ~70 years old.
+
+
+
+4) Calculate the mean and sd of the data and superimpose a normal curve using dnorm(x, mean, sd).  Annotate this code as you go using #s so that you can reference it later.
+
+```{r}
+mean_age = mean(flu$age)
+  
+sd_age = sd(flu$age)
+  
+x.values = seq(0, 100, length=1000)
+y.values = dnorm(x.values, mean=mean_age, sd=sd_age)
+hist(flu$age, probability=T)
+lines(x.values, y.values, col='blue')
+```
+
+
+An additional way we can examine if data are normal or not is to make a qqplot.
+
+```{r}
+qqnorm(flu$age)
+qqline(flu$age)
+```
+
+
+Q: Does a normal distribution seem to fit the data well?
+
+A: Not at all.  The tails extend further than they should in both directions and the peak at very young ages is a big issue.
+
+
+
+5) We are going to use this data to demonstrate the Central Limit Theorem.  We will treat age at death from Switzerland in 1918 as our study population and we will take a large number of random samples from the population of age at death measurements to create a sampling distribution and plot the sample means.
+
+First, we will create our random samples.  Work through the following code line by line to make sure you understand what it is doing.
+
+```{r}
+n<-4 #Each sample will have a size of n=4
+
+results<-vector() #I will store the average age of each sample in this vector that I am calling 'results'. This line of code makes a blank vector that I can fill up with average as I go.
+
+#The code below is a for loop. It will repeat a section of code a specified number of times.  In this case, I am going to loop through this code 10000 times.  Each loop through the code is numbered as i, with i=1 for the first loop through i=10000 for the 10000th loop.
+for(i in 1:10000){
+  
+  AgeSample<-sample(flu$age, size=n, replace=F)
+  #I am sampling 4 values from our population and calling it 'AgeSample'. The replace=F argument specifies that we are unable to sample the same individual data point more than once.
+  
+  results[i]<-mean(AgeSample)
+  #I am calculating the mean of the sample we took in the last step and it will be placed in the ith spot of the results vector.  For the first iteration of the loop, when i=1, the mean for that sample will go into the first spot in the results vector.  This vector will contain 10000 elements by the time the loop is done.
+}
+```
+
+
+
+6) Plot a histogram of the sample means we just created.
+
+```{r}
+hist(results)
+```
+
+Plot a qqplot of the sample means we just created.
+```{r}
+qqnorm(results)
+qqline(results)
+```
+
+What is the mean and sd of this sampling distribution?
+
+```{r}
+mean(results)
+sd(results)
+```
+
+Q: What do you notice about this sampling distribution? How would you describe it? Is it fairly normal or not?
+
+A: It looks fairly normal, although the tails are still a bit long.
+
+
+
+
+7) Copy the loop code from above and create a new sampling distribution that only includes 15 total samples, each of n=4.  Save the values in a vector called results2.
+
+```{r}
+n<-4 #Each sample will have a size of n=4
+
+results2<-vector() #I will store the average age of each sample in this vector that I am calling 'results'. This line of code makes a blank vector that I can fill up with average as I go.
+
+#The code below is a for loop. It will repeat a section of code a specified number of times.  In this case, I am going to loop through this code 15 times.  Each loop through the code is numbered as i, with i=1 for the first loop through i=15 for the 15th loop.
+for(i in 1:15){
+  
+  AgeSample<-sample(flu$age, size=n, replace=F)
+  #I am sampling 4 values from our population and calling it 'AgeSample'. The replace=F argument specifies that we are unable to sample the same individual data point more than once.
+  
+  results2[i]<-mean(AgeSample)
+  #I am calculating the mean of the sample we took in the last step and it will be placed in the ith spot of the results vector.  For the first iteration of the loop, when i=1, the mean for that sample will go into the first spot in the results vector.  This vector will contain 15 elements by the time the loop is done.
+}
+```
+
+Look at the sampling distribution using a histogram.
+
+```{r}
+hist(results2)
+```
+
+Calculate the mean and sd of the new sampling distribution.
+
+```{r}
+mean(results2)
+sd(results2)
+```
+
+
+Q: How does the sampling distribution change when the number of samples is very low?
+
+A: It's a very small sample, so the histogram doesn't look flushed out.  It has only one mode now, which is good, but is still likely not very normal.
+
+
+
+
+8) Copy the loop code from above and create a new sampling distribution that includes 10000 samples of size n=30.  Save the values in a vector called results3.
+
+```{r}
+n<-30 #Each sample will have a size of n=30
+
+results3<-vector() #I will store the average age of each sample in this vector that I am calling 'results'. This line of code makes a blank vector that I can fill up with average as I go.
+
+#The code below is a for loop. It will repeat a section of code a specified number of times.  In this case, I am going to loop through this code 10000 times.  Each loop through the code is numbered as i, with i=1 for the first loop through i=10000 for the 10000th loop.
+for(i in 1:10000){
+  
+  AgeSample<-sample(flu$age, size=n, replace=F)
+  #I am sampling 4 values from our population and calling it 'AgeSample'. The replace=F argument specifies that we are unable to sample the same individual data point more than once.
+  
+  results3[i]<-mean(AgeSample)
+  #I am calculating the mean of the sample we took in the last step and it will be placed in the ith spot of the results vector.  For the first iteration of the loop, when i=1, the mean for that sample will go into the first spot in the results vector.  This vector will contain 10000 elements by the time the loop is done.
+}
+```
+
+Calculate the mean and sd of the new sampling distribution.
+
+```{r}
+mean(results3)
+
+sd(results3)
+```
+
+
+Q: How does the sampling distribution change when the size of each sample increases?  How are the mean and sd affected by a change in the size of each sample?
+
+A: 
+
+
+
+TAKE HOME POINT:
+Our sampling distribution will conform well to a normal distribution if we have a reasonably large number of samples, even in cases where the distribution of the data is moderately non-normal.  Increasing the size of each sample will reduce the variation in the means of samples. 
